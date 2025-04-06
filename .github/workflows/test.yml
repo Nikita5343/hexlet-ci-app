@@ -16,7 +16,6 @@ jobs:
       uses: actions/setup-node@v4
       # Ставим зависимости
       - run: make setup
-      - name: Install dependencies
       run: npm install
       # Запускаем линтер
       - run: make lint

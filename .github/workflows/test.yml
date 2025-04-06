@@ -10,24 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Клонируем репозиторий
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # Устанавливаем Node.js
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-
-      # Устанавливаем зависимости
-      - name: Install dependencies
-        run: make setup
-
-      -  run: make lint
-
-      # Запускаем тесты
-      - name: Run tests
-        run: make test
-
-      # Выводим сообщение от Hexlet
-      - name: Print Hello from Hexlet
-        uses: hexlet-components/hello-from-hexlet-action@release
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: make setup
+      - run: make lint
+      - run: make test
+      - uses: hexlet-components/hello-from-hexlet-action@release

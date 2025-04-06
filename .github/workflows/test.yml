@@ -1,9 +1,23 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  build: # имя взято для примера
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Клонируем репозиторий
-	- setup: make setup
-	- test: make test
-	- lint: make lint
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up project
+        run: make setup
+
+      - name: Run tests
+        run: make test
+
+      - name: Run linter
+        run: make lint

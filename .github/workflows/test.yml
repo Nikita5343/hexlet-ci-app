@@ -17,8 +17,6 @@ jobs:
       # Устанавливаем Node.js
       - name: Install Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
 
       # Устанавливаем зависимости
       - name: Install dependencies

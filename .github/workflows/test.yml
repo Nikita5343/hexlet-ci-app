@@ -6,20 +6,35 @@ on:
       - main
 
 jobs:
-  build: # имя взято для примера
+  build:
     runs-on: ubuntu-latest
 
     steps:
       # Клонируем репозиторий
       - uses: actions/checkout@v4
-      - name: install node.js
-      uses: actions/setup-node@v4
+
+      # Устанавливаем Node.js
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      # Устанавливаем зависимости
       - name: Install dependencies
-      run: npm install
-      # Ставим зависимости
-      - run: make setup
+        run: npm install
+
+      # Если make setup устанавливает дополнительные зависимости или выполняет другие задачи
+      - name: Setup project
+        run: make setup
+
       # Запускаем линтер
-      - run: make lint
-      - run: make test
+      - name: Run linter
+        run: make lint
+
+      # Запускаем тесты
+      - name: Run tests
+        run: make test
+
+      # Выводим сообщение от Hexlet
       - name: Print Hello from Hexlet
-      uses: hexlet-components/hello-from-hexlet-action@release
+        uses: hexlet-components/hello-from-hexlet-action@release

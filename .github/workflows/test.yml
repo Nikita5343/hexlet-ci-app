@@ -12,8 +12,14 @@ jobs:
     steps:
       # Клонируем репозиторий
       - uses: actions/checkout@v4
+      - name: install node.js
+      uses: actions/setup-node@v4
+      - name: Install dependencies
+      run: npm install
       # Ставим зависимости
       - run: make setup
       # Запускаем линтер
       - run: make lint
       - run: make test
+      - name: Print Hello from Hexlet
+      uses: hexlet-components/hello-from-hexlet-action@release

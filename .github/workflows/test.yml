@@ -1,38 +1,29 @@
-name: CI Workflow
+name: Node CI
 
 on:
-  push:
-    branches:
-      - main
+  - push
+  - pull_request
+
+env:
+  CI: true
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [18.x]
+
     steps:
-      # Клонируем репозиторий
       - uses: actions/checkout@v4
-
-      # Устанавливаем Node.js
-      - name: Install Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
-
-      # Устанавливаем зависимости
-      - name: Install dependencies
-        run: npm install
-
-      # Если make setup устанавливает дополнительные зависимости или выполняет другие задачи
-      - name: Setup project
-        run: make setup
-
-      # Запускаем линтер
-      - name: Run linter
-        run: make lint
-
-      # Запускаем тесты
-      - name: Run tests
-        run: make test
-
-      # Выводим сообщение от Hexlet
-      - name: Print Hello from Hexlet
-        uses: hexlet-components/hello-from-hexlet-action@release
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: make install
+      - run: make lint
+      - run: make test
+      - uses: hexlet-components/hello-from-hexlet-action@release

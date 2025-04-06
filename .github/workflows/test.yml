@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: make setup
 
-        run: make lint
+      -  run: make lint
 
       # Запускаем тесты
       - name: Run tests

@@ -4,10 +4,11 @@ jobs:
 
     steps:
       # Клонируем репозиторий
-      - setup:
+      - name: setup
       run: make setup
       # Устанавливаем Node.js
-      - lint:
+      - name: lint
         run: make lint
-      - test:
+      - name: test
         run: make test
+      

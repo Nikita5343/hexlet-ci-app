@@ -22,8 +22,6 @@ jobs:
       - name: Install dependencies
         run: make setup
 
-      # Запускаем линтер
-      - name: Run linter
         run: make lint
 
       # Запускаем тесты

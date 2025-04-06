@@ -10,9 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Клонируем репозиторий
+      - name: Checkout code
         uses: actions/checkout@v4
+
+      # Устанавливаем Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      # Устанавливаем зависимости
+      - name: Install dependencies
         run: make setup
+
+      # Запускаем линтер
+      - name: Run linter
         run: make lint
+
+      # Запускаем тесты
+      - name: Run tests
         run: make test
+
+      # Выводим сообщение от Hexlet
+      - name: Print Hello from Hexlet
         uses: hexlet-components/hello-from-hexlet-action@release

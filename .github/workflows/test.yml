@@ -3,7 +3,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Клонируем репозиторий
       - uses: actions/checkout@v4
+      # Устанавливаем Node.js
+      - uses: actions/setup-node@v4
+      # Ставим зависимости
       - run: make setup
+      # Запускаем линтер
       - run: make lint
       - run: make test

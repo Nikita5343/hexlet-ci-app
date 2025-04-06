@@ -1,14 +1,23 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  build: # имя взято для примера
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Клонируем репозиторий
-      - name: setup
-      run: make setup
-      # Устанавливаем Node.js
-      - name: lint
-        run: make lint
-      - name: test
+      - name: one
+        uses: actions/checkout@v3
+
+      - name: two
+        run: make setup
+
+      - name: three
         run: make test
-      
+
+      - name: four
+        run: make lint

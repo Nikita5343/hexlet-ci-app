@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: one
-        uses: actions/checkout@v3
-
       - name: two
         run: make setup
 
